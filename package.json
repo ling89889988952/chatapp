@@ -1,0 +1,25 @@
+{
+  "name": "chatapp",
+  "version": "1.0.0",
+  "description": "socail media chat app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ling89889988952/chatapp.git"
+  },
+  "author": "Ling Zou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ling89889988952/chatapp/issues"
+  },
+  "homepage": "https://github.com/ling89889988952/chatapp#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.0.2",
+    "socket.io": "^2.3.0"
+  }
+}
