@@ -1,5 +1,5 @@
 // imports always go first - if we're importing anything
-import ChatMessage from "./modules/ChatMessage.js";
+import ChatMessage from "./modules/message.js";
 
 const socket = io();
 
@@ -28,20 +28,7 @@ const vm = new Vue ({
         nickname: "",
         messages: []
     },
-    // data: {
-    //     message:[
-    //         {
-    //             name: "TVR",
-    //             content:"hello"
-    //         },
-
-    //         {
-    //             name: "dd",
-    //             content:"ignore"
-    //         }
-            
-    //     ]
-    // },
+   
 
     methods: {
         // emit a message event to the server so that it can in 
@@ -54,10 +41,11 @@ const vm = new Vue ({
             // whatever comes after the "or" operator
             socket.emit('chat_message', {
                 content: this.message,
-                name: this.nickname || "anonymous"
+                name: this.name || "anonymous"
             })
 
             this.message = "";
+            
         }
     },
 

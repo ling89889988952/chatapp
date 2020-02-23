@@ -4,12 +4,12 @@ var app = express();
 // add socket here
 const io = require('socket.io')();
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
 // tell express where our static files are (js, images, css etc)
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
+app.get('/', function(req, res){
     res.sendFile(__dirname + '/views/index.html');
 });
 
