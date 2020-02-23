@@ -15,10 +15,13 @@ main {
 .form-container, .messages { padding: 20px; }
 .form-container { 
 	flex: 1; 
-	border: 6px solid #bfcfd6;
-	background-color: #e3edf1;
+	border: 6px solid #e2e0e0;
+	background-color: #43435c;
 
-	label { display: block; margin-bottom: 0.5rem; }
+	label { display: block;
+			 margin-bottom: 0.5rem; 
+			color:#fff;
+		}
 }
 
 .messages { 
@@ -50,14 +53,21 @@ form {
 	input[type=submit] { 
 		width: auto; 
 		padding: 10px; 
-		background-color: rgb(75, 200, 17);
+		background-color:#5e5e79;
 		margin-top: 1rem; 
 		border-radius: 8px;
 		color: white;
 		cursor: pointer;
 		text-transform: uppercase;
 		font-weight: bold;
+
+		:hover{
+			background-color:#bfcfd6;
+			border:#5e5e79;
+		}
 	}
+
+	
 }
 
 #messages {
