@@ -1,10 +1,27 @@
 var express = require('express');
 var app = express();
 
+// var mysql = require('mysql');
+// var conn = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'root',
+//     database:'db_chatapp'
+// });
+
+// conn.connect(function(err) {
+//     if (err) {
+//       return console.error('error: ' + err.message);
+//     }
+   
+//     console.log('Connected to the MySQL server.');
+//   });
+
+
 // add socket here
 const io = require('socket.io')();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 // tell express where our static files are (js, images, css etc)
 app.use(express.static('public'));
