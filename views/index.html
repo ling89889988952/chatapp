@@ -8,27 +8,19 @@
 </head>
 <body>
     <main id="app">
-		<section class="form-container">
-			<label for="name">Your Nickname</label>
-			<input type="text" id="name" class="name" placeholder="What is your nickname?">
-
-			<form>
-				<label for="message">Something to say?</label>
-				<textarea v-model="message" class="message" type="text" autocomplete="off" id="textarea"></textarea>
-				<input @click.prevent="dispatchMessage" type="submit">
-			</form>
-		</section>
-
-		<section class="messages">
-			<ul id="messages">
-				<!-- render a new message component for every message -->
-				<newmessage v-for="message in messages" :msg="message"></newmessage>
-			</ul>
-		</section>
+		<div id="nav">
+			<router-link v-if="authenticated" to="/login" v-on:click.native="logout()" replace>Logout</router-link>
+			<router-link v-if="notice"  v-on:click.notice="notice()" replace>{{ notices }}</router-link>
+		</div>
+		<router-view @authenticated="setAuthenticated"/>
 	</main>
-    </main>
+	<footer>
+		<p class="copy">&copy; 2020 Chat App</p>
+	</footer>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="https://unpkg.com/vue"></script>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script type="module" src="js/main.js"></script>
 </body>
 </html>
