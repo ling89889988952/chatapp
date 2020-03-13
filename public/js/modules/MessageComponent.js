@@ -4,6 +4,9 @@ import ChatComponent from "./ChatComponent.js";
 
 const socket = io();
 
+// props inside the component is coming from the login route - this is the nickname field
+// and is send via the route params
+
 export default {
     props: ["myusername"],
 
@@ -34,7 +37,6 @@ export default {
             message:'',
             messages: [],
             socketID : this.$parent.sockData.socketID,
-            //nickname: ""
         }     
     },
    
@@ -46,7 +48,7 @@ export default {
 
             socket.emit('chat_message', {
                 content:  this.message,
-                name: this.nickname
+                name: this.myusername
             })
 
             this.message = "";

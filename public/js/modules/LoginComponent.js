@@ -35,8 +35,8 @@ export default {
                 if(this.input.username == this.$parent.mockAccount.username && this.input.password == this.$parent.mockAccount.password) {
                     this.$emit("authenticated", true);
                     this.$emit("notice", true);
-
-                    // this.$emit("nickname", this.input.nickname);
+                    
+                    // send the username via the route (as a parameter - this gets pushed into props in the message component)
                     this.$router.push({ name: "message", params: { myusername: this.input.nickname } });
                 } else {
                     console.log("The username and / or password is incorrect");
