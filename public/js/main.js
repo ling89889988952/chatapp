@@ -24,22 +24,21 @@ import LoginComponent from "./modules/LoginComponent.js";
     });
 
     const vm = new Vue({
-        data(){
-            return{
-                authenticated: false,
-                notice: false,
-                mockAccount:{
-                    username:'admin',
-                    password:'admin'
-                },
+        data: {
+            authenticated: false,
+            notice: false,
 
-                sockData:{
-                    socketID: "",
-                    message: "",
-                    nickname: "",
-                    messages: []
-                },
-            }
+            mockAccount: {
+                username:'admin',
+                password:'admin'
+            },
+
+            sockData:{
+                socketID: "",
+                message: "",
+                nickname: "",
+                messages: []
+            },
         },
 
         methods:{
