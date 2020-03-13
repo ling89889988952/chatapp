@@ -5,11 +5,12 @@ import ChatComponent from "./ChatComponent.js";
 const socket = io();
 
 export default {
+    props: ["myusername"],
+
     template: `
     <div>
         <section class="form-container">
-			<label for="nickname">Your Nickname</label>
-			<input v-model="nickname" type="text" id="name" class="name" placeholder="What is your nickname?">
+            <h2>{{ myusername }}</h2>
 
 			<form>
 				<label for="message">Something to say?</label>
@@ -25,60 +26,34 @@ export default {
                 </newmessage>
 			</ul>
         </section>
+    </div>
+    `,    
 
-        </div>
-        `
-
-    ,
-
-    
-
-    data(){
+    data() {
         return {
-                nickname: '',
-                message:'',
-                messages: [],
-                socketID : this.$parent.sockData.socketID,
-                // matchedID: this.$parent.sockData.socketID == this.msg.id,
-                // content: this.message    
-
-                // message:{
-                //     nickname: this.$parent.sockData.nickname,
-                //     content: this.$parent.sockData.message,
-                //     matchedID: this.$parent.sockData.socketID 
-                // }
-        }
-     
-    },
-
-    created: function(){
-        this.appendMessage() 
-    
+            message:'',
+            messages: [],
+            socketID : this.$parent.sockData.socketID,
+            //nickname: ""
+        }     
     },
    
-    methods: {
-        
+    methods: {        
         // emit a message event to the server so that it can in 
         // turn send this to anyone who's connected
         dispatchMessage() {
             console.log('handle emit message');
-                //  this.input.nickname == this.$parent.sockData.nickname
-                //  this.input.message  == this.$parent.sockData.message
-                    // this.message =this.$parent.sockData.message
-                    // this.nickname =this.$parent.sockData.nickname
-                    socket.emit('chat_message', {
-                        content:  this.message,
-                        name: this.nickname 
-                        // || "anonymous"
-                    })
-        
-                    this.message = "";
-                },
 
-        appendMessage(){
-            
-            messages.push(message)
+            socket.emit('chat_message', {
+                content:  this.message,
+                name: this.nickname
+            })
 
+            this.message = "";
+        },
+
+        appendMessage() {            
+            this.messages.push(message)
             }
         },
         
@@ -91,13 +66,3 @@ export default {
         newmessage: ChatComponent
     }  
 }
-
-
-
-
-
-
-
-
-
-

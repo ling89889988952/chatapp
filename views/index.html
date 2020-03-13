@@ -9,7 +9,7 @@
 <body>
     <main id="app">
 		<div id="nav">
-			<router-link v-if="authenticated" to="/login" v-on:click.native="logout()" replace>Logout</router-link>
+			<router-link v-if="authenticated" to="/" v-on:click.native="logout()" replace>Logout</router-link>
 			<router-link v-if="notice"  v-on:click.notice="notice()" replace>{{ notices }}</router-link>
 		</div>
 		<router-view @authenticated="setAuthenticated"/>
