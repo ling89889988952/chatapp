@@ -26,7 +26,7 @@ import LoginComponent from "./modules/LoginComponent.js";
             routes:[
                 { path:'/', redirect:{name:'login'} },
                 { path:'/login', name:'login', component:LoginComponent },
-                { path:'/message', name:'message', component:ChatMessage},
+                { path:'/message', name:'message', component:ChatMessage, props:true},
 
             ]
         }

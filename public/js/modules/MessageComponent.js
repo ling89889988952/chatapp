@@ -5,11 +5,13 @@ import ChatComponent from "./ChatComponent.js";
 const socket = io();
 
 export default {
+    props: ['currentuser'],
+
     template: `
     <div>
         <section class="form-container">
 			<label for="nickname">Your Nickname</label>
-			<input v-model="nickname" type="text" id="name" class="name" placeholder="What is your nickname?">
+			<input type="text" id="name" class="name" value ='' v-bind:currentuser='nickname'>
 
 			<form>
 				<label for="message">Something to say?</label>
@@ -35,7 +37,7 @@ export default {
 
     data(){
         return {
-                nickname: '',
+                // nickname: '',
                 message:'',
                 messages: [],
                 socketID : this.$parent.sockData.socketID,
