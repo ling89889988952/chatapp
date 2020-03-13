@@ -54,11 +54,10 @@ export default {
 
         appendMessage() {            
             this.messages.push(message)
-            }
-        },
-        
+        }
+    },        
 
-    mouted: function() {
+    mounted: function() {
         console.log('vue is done mounting');
     },
 
