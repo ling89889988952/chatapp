@@ -1,30 +1,38 @@
-#loginContainer{
-    background:#5e5e79 ;
-    color: #fff;
-}
-
 #formapp{
-    display: block;
+    margin: 0 auto;
     margin-top: 3%;
-    h2{
-        text-align: center;
-        font-size: 2em;
-    }
+    width: 100%;
 
-    p{
-        margin-top: 10px;
+    h2{
+        font-family: 'Baloo 2', cursive;
+        font-size: 3em;
+        font-weight: bold;
         text-align: center;
+        color:#c3c3e2;
+        letter-spacing:2px;
+        
     }
 
     #my-form{
         width: 50%;
         margin: 2em auto;
+
+      
         label{
             padding-bottom: 1em;
+            font-family: 'Baloo 2', cursive;
+            color: #f1f0f8;
+            
         }
-    
         input{
             margin: 0.5em auto;
+        }
+
+        input[type=submit] { 
+            width: auto; 
+            padding: 10px 30px;
+            margin-top: 3%; 
+        
         }
 
 

@@ -14,9 +14,10 @@ import LoginComponent from "./modules/LoginComponent.js";
         console.log('a user disconnected');
     }
 
+
     let router = new VueRouter({   
         mode: "history",
-        
+
         routes:[
             { path:'/', name: 'login', component: LoginComponent },
             { path:'/welcome-to-chat', name:'message', component: MessageComponent, props: true },
@@ -26,7 +27,7 @@ import LoginComponent from "./modules/LoginComponent.js";
     const vm = new Vue({
         data: {
             authenticated: false,
-            notice: false,
+            notice:'',
 
             mockAccount: {
                 username:'admin',
@@ -49,6 +50,7 @@ import LoginComponent from "./modules/LoginComponent.js";
             logout(){
                 this.authenticated = false;
                 this.$router.push({ path: "/" });
+                this.notice= 'leaved';
             },         
         },
 

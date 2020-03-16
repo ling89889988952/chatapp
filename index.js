@@ -1,24 +1,6 @@
 var express = require('express');
 var app = express();
 
-// var mysql = require('mysql');
-// var conn = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     password: 'root',
-//     database:'db_chatapp'
-// });
-
-// conn.connect(function(err) {
-//     if (err) {
-//       return console.error('error: ' + err.message);
-//     }
-   
-//     console.log('Connected to the MySQL server.');
-//   });
-
-
-// add socket here
 const io = require('socket.io')();
 
 const port = process.env.PORT || 5000;
@@ -41,15 +23,21 @@ io.on('connection', function(socket){ // socket is your connection
     console.log(' a user has connected');
     socket.emit('connected',{ sID: socket.id, message:"new connection" });
 
-    socket.on('chat_message', function(msg){
-        console.log(msg);// let's see what the payload is from the client side
+    socket.on('new_user', function (username) {
+         io.emit('user-join', username);
+    })
 
+    socket.on('chat_message', function(msg){
+        console.log(msg);
+        // let's see what the payload is from the client side
         // tell the connection manager (socket.io) to send this message to everyone
         // anyone connected to our chat app will get this message(including the sender)
         io.emit('new_message', { id: socket.id, message: msg })
-    })
+    });
 
     socket.on('disconnect', function(){
         console.log('a user has disconnected');
+        io.emit("user-leave", { id: socket.id });
     })
 })
+
