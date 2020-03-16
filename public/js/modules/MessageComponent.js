@@ -4,102 +4,85 @@ import ChatComponent from "./ChatComponent.js";
 
 const socket = io();
 
+// props inside the component is coming from the login route - this is the nickname field
+// and is send via the route params
+
 export default {
-    props: ['currentuser'],
+    props: ["myusername"],
 
     template: `
-    <div>
+    <div class="chat-container">
         <section class="form-container">
-			<label for="nickname">Your Nickname</label>
-			<input type="text" id="name" class="name" value ='' v-bind:currentuser='nickname'>
+            <h2>Nickname: <br> {{ myusername }} </h2>
+
 
 			<form>
 				<label for="message">Something to say?</label>
 				<textarea v-model="message" class="message" type="text" autocomplete="off" id="textarea"></textarea>
-				<input @click.prevent="dispatchMessage" type="submit">
+				<input @click.prevent="dispatchMessage"  type="submit">
 			</form>
 		</section>
 
         <section class="messages">
-			<ul id="messages">
+            <ul id="messages">
+               
+                    <p class="notice"> {{ myusername }} joined.</p>
+                
+
 				<!-- render a new message component for every message -->
-                <newmessage v-for="message in messages" :msg="message">
-                </newmessage>
+                <newmessage v-for="message in messages" :msg="message"> </newmessage>
 			</ul>
         </section>
+    </div>
+    `,    
 
-        </div>
-        `
-
-    ,
-
-    
-
-    data(){
+    data() {
         return {
-                // nickname: '',
-                message:'',
-                messages: [],
-                socketID : this.$parent.sockData.socketID,
-                // matchedID: this.$parent.sockData.socketID == this.msg.id,
-                // content: this.message    
-
-                // message:{
-                //     nickname: this.$parent.sockData.nickname,
-                //     content: this.$parent.sockData.message,
-                //     matchedID: this.$parent.sockData.socketID 
-                // }
+            message:'',
+            messages: [],
+            socketID : this.$parent.sockData.socketID,
+            nickname:this.myusername
         }
-     
-    },
+    },        
+        
 
-    created: function(){
-        this.appendMessage() 
-    
-    },
    
-    methods: {
+    methods: {    
         
         // emit a message event to the server so that it can in 
         // turn send this to anyone who's connected
-        dispatchMessage() {
+        dispatchMessage(){
             console.log('handle emit message');
-                //  this.input.nickname == this.$parent.sockData.nickname
-                //  this.input.message  == this.$parent.sockData.message
-                    // this.message =this.$parent.sockData.message
-                    // this.nickname =this.$parent.sockData.nickname
-                    socket.emit('chat_message', {
-                        content:  this.message,
-                        name: this.nickname 
-                        // || "anonymous"
-                    })
-        
-                    this.message = "";
-                },
-
-        appendMessage(){
             
-            messages.push(message)
+            socket.emit('chat_message', {
+                content:  this.message,
+                name: this.nickname
+            });
+            this.message = "";
+            socket.addEventListener('new_message',(message)=>{
+                this.messages.push(message);
+            });
 
-            }
         },
-        
+          
+      
+    },        
 
-    mouted: function() {
+    mounted: function() {
         console.log('vue is done mounting');
+        // this.socket.emit('new_message', (message) => {
+        //     this.messages.push(message);
+        //   });    
+        },
+
+    
+
+    components:{
+        newmessage: ChatComponent
     },
 
-    components: {
-        newmessage: ChatComponent
-    }  
+
+
+   
 }
-
-
-
-
-
-
-
-
-
 
