@@ -1,4 +1,5 @@
 const socket = io();
+
 export default {   
     template: `
     <div id="formapp">
@@ -30,7 +31,8 @@ export default {
                 username: '',
                 password: '',
                 nickname:''
-            },            
+            },
+                      
         }
     },
 
@@ -39,7 +41,8 @@ export default {
             if(this.input.username != '' && this.input.password != ''){
                 if(this.input.username == this.$parent.mockAccount.username && this.input.password == this.$parent.mockAccount.password) {
                     this.$emit("authenticated", true);
-                    socket.emit('new_user', this.nickname);
+                    
+                    socket.emit('new_user', this.input.nickname);
                     // send the username via the route (as a parameter - this gets pushed into props in the message component)
                     this.$router.push({ name: "message", params: { myusername:this.input.nickname } });
                 } else {

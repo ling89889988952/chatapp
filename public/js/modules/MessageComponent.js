@@ -24,11 +24,10 @@ export default {
 		</section>
 
         <section class="messages">
+            <section class="notice">
+                <p v-for="notice in notification">{{ notice }}</p>
+            </section>
             <ul id="messages">
-               
-                    <p class="notice"> {{ myusername }} joined.</p>
-                
-
 				<!-- render a new message component for every message -->
                 <newmessage v-for="message in messages" :msg="message"> </newmessage>
 			</ul>
@@ -40,8 +39,9 @@ export default {
         return {
             message:'',
             messages: [],
-            socketID : this.$parent.sockData.socketID,
-            nickname:this.myusername
+            socketID : "",
+            nickname:this.myusername,
+            notification: [],
         }
     },        
         
@@ -59,10 +59,6 @@ export default {
                 name: this.nickname
             });
             this.message = "";
-            socket.addEventListener('new_message',(message)=>{
-                this.messages.push(message);
-            });
-
         },
           
       
@@ -70,15 +66,21 @@ export default {
 
     mounted: function() {
         console.log('vue is done mounting');
-        // this.socket.emit('new_message', (message) => {
-        //     this.messages.push(message);
-        //   });    
+        socket.addEventListener('new_message',(message)=>{
+            this.messages.push(message);
+        });
+
+        socket.addEventListener('user-join',(notice)=>{
+            this.notification.push(notice);
+        });
+        
+      
         },
 
     
 
     components:{
-        newmessage: ChatComponent
+        newmessage: ChatComponent,
     },
 
 
