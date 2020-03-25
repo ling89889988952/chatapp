@@ -24,7 +24,8 @@ io.on('connection', function(socket){ // socket is your connection
     socket.emit('connected',{ sID: socket.id, message:"new connection" });
 
     socket.on('new_user', function (username) {
-         io.emit('user-join', username);
+        console.log(username);
+         io.emit('user-join', username + ' join the chat room. ' );
     })
 
     socket.on('chat_message', function(msg){
@@ -32,12 +33,12 @@ io.on('connection', function(socket){ // socket is your connection
         // let's see what the payload is from the client side
         // tell the connection manager (socket.io) to send this message to everyone
         // anyone connected to our chat app will get this message(including the sender)
-        io.emit('new_message', { id: socket.id, message: msg })
+        io.emit('new_message', {id: socket.id, message: msg })
     });
 
     socket.on('disconnect', function(){
         console.log('a user has disconnected');
-        io.emit("user-leave", { id: socket.id });
+        // io.emit("user-leave", username + ' leave the chat room. ');
     })
 })
 

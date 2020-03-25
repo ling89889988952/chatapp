@@ -50,7 +50,7 @@ import LoginComponent from "./modules/LoginComponent.js";
             logout(){
                 this.authenticated = false;
                 this.$router.push({ path: "/" });
-                this.notice= 'leaved';
+                // socket.emit('user-leave', this.sockData.nickname);
             },         
         },
 
