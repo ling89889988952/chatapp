@@ -39,6 +39,8 @@ This project use tNode.js, Socket.io and Vue.js, make sure to instal the package
 
 6.Please type 'npm start' in terminal to browser the project on localhost:5000
 
+# 7.The chatapp username  is "admin" , password is "admin"
+
 
 ## Contributing:
 
