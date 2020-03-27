@@ -27,6 +27,7 @@ import LoginComponent from "./modules/LoginComponent.js";
     const vm = new Vue({
         data: {
             authenticated: false,
+            set_authenticated:false,
             notice:'',
 
             mockAccount: {
@@ -45,6 +46,7 @@ import LoginComponent from "./modules/LoginComponent.js";
         methods:{
             setAuthenticated(status) {
                 this.authenticated = status;
+                this.set_authenticated = status;
             },
 
             logout(){
