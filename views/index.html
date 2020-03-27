@@ -11,6 +11,7 @@
     <main id="app">
 		<div id="nav">
 			<router-link v-if="authenticated" to="/" v-on:click.native="logout()" replace><img src="images/logout.png" alt="logout"></router-link>
+			<router-link v-if="set_authenticated" to="/welcome-to-chat"></router-link>
 			
 		</div>
 		<router-view @authenticated="setAuthenticated"/>
